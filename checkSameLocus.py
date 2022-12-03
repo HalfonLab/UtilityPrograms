@@ -20,6 +20,7 @@ import csv
 diction={}
 locusList=[]
 sizeOfLocusDict={}
+intronDict={}
 file=sys.argv[1]
 
 #read bed file and create output file with HitsAndSizePerLocus_ beginning
@@ -42,11 +43,19 @@ with open(file,'r') as infile:
 		coord=schr+':'+sstart+'-'+send
 		#left and right flanked gene names- saving them together and calling this locus as 'flankedGenes'
 		flankedGenes=leftF+'-'+rightF
+		#creating locuslist
 		if flankedGenes not in locusList:
 			locusList.append(flankedGenes)
 			#locusList.append(flankedGenes+':'+str(abs(sizeOfLocus)))
+			#creating dictionary to save size of locus, flanked gene as a key
 			if flankedGenes not in sizeOfLocusDict:
-				sizeOfLocusDict[flankedGenes]=str(sizeOfLocus)
+				sizeOfLocusDict[flankedGenes]=str(abs(sizeOfLocus))
+			
+			#adding intron information
+			if leftF==rightF:
+				intronDict[flankedGenes]='intronic'
+			else:
+				intronDict[flankedGenes]='not-intronic'
 
 		#if locus not in dictionary add it now
 		if flankedGenes not in diction:
@@ -65,10 +74,10 @@ with open(file,'r') as infile:
 #pprint.pprint(diction)
 #print(locusList)
 
-with open('HitsAndSizePerLocus_'+file,'w') as outfile
+with open('HitsAndSizePerLocus_'+file,'w') as outfile:
 	for item in diction.keys():
 		#print(item)
 		scrms=diction[item].split(',')
 		#print(item,' ',str(len(scrms)),' ',sizeOfLocusDict[item])
-		outfile.write(item,'\t',str(len(scrms)),'\t',sizeOfLocusDict[item])
+		outfile.write(item+'\t'+str(len(scrms))+'\t'+sizeOfLocusDict[item]+'\t'+intronDict[item]+'\n')
 	
