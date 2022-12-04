@@ -38,7 +38,9 @@ with open(file,'r') as infile:
 		#sizeOfLocus=sizeOfSCRM+abs(int(cols[15]))+abs(int(cols[20]))
 		sizeOfLocus= (int(cols[17]))-(int(cols[13]))
 		
-		
+		#exception case where SCRM is overlapping two genes, locus size would be end of right gene - start of left gene
+		if (int(sstart) < int(cols[13])) and (int(sstart) < int(cols[17])) and (int(send) > int(cols[13])) and (int(send) > int(cols[17])):
+			sizeOfLocus=(int(cols[18]))-(int(cols[12]))
 
 		coord=schr+':'+sstart+'-'+send
 		#left and right flanked gene names- saving them together and calling this locus as 'flankedGenes'
