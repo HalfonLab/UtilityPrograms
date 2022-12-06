@@ -34,13 +34,13 @@ subdirectory=a+'/'+directory_in_str.strip('/')
 #looping over all the files in the subdirectory
 for root, dirs, files in os.walk(subdirectory):
 	for filename in files:
-		print(os.path.join(root, filename))
+		#print(os.path.join(root, filename))
 		print(filename)
 		#read bed file and create output file with HitsAndSizePerLocus_ beginning
 		
 		with open(os.path.join(root, filename),'r') as infile:
 			for line in infile:
-				print(line)
+				#print(line)
 				cols=line.split('\t')
 				schr=cols[0]
 				sstart=cols[1]
