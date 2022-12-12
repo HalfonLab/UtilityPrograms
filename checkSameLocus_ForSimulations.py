@@ -19,10 +19,7 @@ import csv
 
 
 
-diction={}
-locusList=[]
-sizeOfLocusDict={}
-intronDict={}
+
 #file=sys.argv[1]
 #takes directory instead
 directory_in_str=sys.argv[1]
@@ -36,17 +33,24 @@ for root, dirs, files in os.walk(subdirectory):
 	for filename in files:
 		#print(os.path.join(root, filename))
 		print(filename)
-		#read bed file and create output file with HitsAndSizePerLocus_ beginning
+		#initializing dictionaries and lists
+
+		diction={} #this dictionary would save all locus such that leftFlankedGene-RightFlankedGene would be the key, and value would be all the hits in the locus
+		sizeOfLocusDict={} #this dictionary will save size of locus as their values, and locus itself would be the keys
+		intronDict={} #for each locus this dictionay would save if the hit is within intron 
+		locusList=[] #saving all possible/unique locus as a list
+
+		
 		
 		with open(os.path.join(root, filename),'r') as infile:
 			for line in infile:
 				#print(line)
 				cols=line.split('\t')
-				schr=cols[0]
-				sstart=cols[1]
-				send=cols[2]
-				leftF=cols[14]
-				rightF=cols[19]
+				schr=cols[0] #SCRM chr name
+				sstart=cols[1] # SCRM start base pair
+				send=cols[2] # SCRM end base pair
+				leftF=cols[14] #name of left flanking gene
+				rightF=cols[19] #name of right flanking gene
 		
 				sizeOfSCRM=int(send)-int(sstart)
 				#sizeOfLocus=sizeOfSCRM+abs(int(cols[15]))+abs(int(cols[20]))
@@ -55,7 +59,8 @@ for root, dirs, files in os.walk(subdirectory):
 				#exception case where SCRM is overlapping two genes, locus size would be end of right gene - start of left gene
 				if (int(sstart) < int(cols[13])) and (int(sstart) < int(cols[17])) and (int(send) > int(cols[13])) and (int(send) > int(cols[17])):
 					sizeOfLocus=(int(cols[18]))-(int(cols[12]))
-
+				
+				#saving SCRM hit coordinate to coord variable
 				coord=schr+':'+sstart+'-'+send
 				#left and right flanked gene names- saving them together and calling this locus as 'flankedGenes'
 				flankedGenes=leftF+'-'+rightF
