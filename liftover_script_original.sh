@@ -15,7 +15,10 @@
 # **NOTE that the chain file names and header modifications are    #
 #hard-coded and need to be changed when changing species and/or    #
 #builds.                                                           #
-#                                                                  #
+#NOTE: if you get this error: “Can’t do inplace edit on test.bed.fa#
+# File exists”  to change the “-i” to “-i.orig” and then just      #
+#optionally delete the “.orig” file when finished..		   #
+#								   #	
 #revision history:                                                 #
 #version 1: November 28 2017                                       #
 ####################################################################
