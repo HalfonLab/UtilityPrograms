@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -l
 #SBATCH --partition=general-compute --qos=supporters
 #SBATCH --time=36:00:00
 #SBATCH --nodes=1
