@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -l
 #SBATCH --partition=general-compute
 #SBATCH --qos=general-compute
 #SBATCH --time=8:00:00
@@ -10,8 +10,8 @@
 #SBATCH --mail-user=
 #SBATCH --mail-type=ALL
 
-
-module load python/anaconda 
+module load foss
+module load scipy-bundle
 module load pybedtools/0.8.0 
 module load MACS2
 
