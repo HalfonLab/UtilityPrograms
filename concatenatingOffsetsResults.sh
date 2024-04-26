@@ -6,7 +6,7 @@ for task in task_offset_0_1 task_offset_10_2 task_offset_20_3 task_offset_30_4 t
 do 
 	echo $task
 	echo $i
-	perl Generate_top_N_SCRMhits.pl -d $task -n 5000 -o scrmshawOutput_offset_$i.5000scrms_IMM
+	perl /projects/academic/mshalfon/Scripts/Generate_top_N_SCRMhits.pl -d $task -n 5000 -o scrmshawOutput_offset_$i.5000scrms_IMM
 	let i=i+10
 
 
