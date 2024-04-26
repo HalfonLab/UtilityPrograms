@@ -6,7 +6,7 @@ for task in task_offset_0_1 task_offset_10_2 task_offset_20_3 task_offset_30_4 t
 do 
 	echo $task
 	echo $i
-	perl /projects/academic/mshalfon/Scripts/Generate_top_N_SCRMhits.pl -d $task -n 5000 -o scrmshawOutput_offset_$i.5000scrms_IMM
+	perl /projects/academic/mshalfon/Scripts/Generate_top_N_SCRMhits.pl -d $task -n 5000 -o scrmshawOutput_offset_$i.5000scrms
 	let i=i+10
 
 
@@ -19,5 +19,5 @@ echo "Moving Temporary files"
 #making directory to move temporary created files i.e individual 0 to 240 offset files
 mkdir scrmsIndividualHits_0to240offset
 
-mv scrmshawOutput_offset*5000scrms_IMM scrmsIndividualHits_0to240offset/
+mv scrmshawOutput_offset*5000scrms scrmsIndividualHits_0to240offset/
 
