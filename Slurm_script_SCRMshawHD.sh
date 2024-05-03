@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -l
 #SBATCH --partition=general-compute --qos=supporters
 #SBATCH --time=72:00:00
 #SBATCH --nodes=1
@@ -14,8 +14,9 @@
 #SBATCH --mail-user=hasibaas@buffalo.edu
 #SBATCH --mail-type=ALL
 
-module load bioperl/1.6.1
-module load perl/5.20.2
+module load gcc
+module load bioperl
+module load perl
 
 ulimit -s unlimited
 
@@ -35,7 +36,7 @@ SLURM_TASK_DIR=${SLURM_SUBMIT_DIR}/task_offset_${myNUM}_${SLURM_ARRAY_TASK_ID}
 echo "SLURM_TASK_DIR="$SLURM_TASK_DIR
 
 
-EXE="perl code/scrm.pl"
+EXE="perl /projects/academic/mshalfon/SCRMshaw_HD/code/scrm.pl"
 ARGS="--thitw 5000 --gff project1/gene.gff3 \
 --genome project1/genome.fa \
 --traindirlst project1/trainingSet.lst --imm --hexmcd --pac --lb $myNUM --outdir $SLURM_TASK_DIR --step 123"
