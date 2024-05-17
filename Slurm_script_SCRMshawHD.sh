@@ -11,7 +11,7 @@
 
 
 #SBATCH --output="outputScrmshawHD_.txt"
-#SBATCH --mail-user=hasibaas@buffalo.edu
+#SBATCH --mail-user=
 #SBATCH --mail-type=ALL
 
 module load gcc
@@ -36,7 +36,7 @@ SLURM_TASK_DIR=${SLURM_SUBMIT_DIR}/task_offset_${myNUM}_${SLURM_ARRAY_TASK_ID}
 echo "SLURM_TASK_DIR="$SLURM_TASK_DIR
 
 
-EXE="perl /projects/academic/mshalfon/SCRMshaw_HD/code/scrm.pl"
+EXE="perl ~project1/SCRMshaw_HD/code/scrm.pl"
 ARGS="--thitw 5000 --gff project1/gene.gff3 \
 --genome project1/genome.fa \
 --traindirlst project1/trainingSet.lst --imm --hexmcd --pac --lb $myNUM --outdir $SLURM_TASK_DIR --step 123"
