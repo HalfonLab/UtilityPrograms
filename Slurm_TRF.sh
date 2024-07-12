@@ -32,7 +32,7 @@ fi
 
 genome_file=$1
 
-#run the post processing script
+#run TRF
 /projects/academic/mshalfon/Scripts/trf409.linux64 $genome_file 2 7 7 80 10 50 500 -m -h
 
 
