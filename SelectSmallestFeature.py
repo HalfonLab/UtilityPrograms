@@ -33,7 +33,7 @@ def generate_new_cluster(df):
             cluster_index = cluster_index + 1
             end = row.stop
             chrom = row.chrom
-            df.at[index,"cluster"] = cluster_index
+            df.at[index, "cluster"] = cluster_index
         else:
             if (row.stop > end):
                 end = row.stop
