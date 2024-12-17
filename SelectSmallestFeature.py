@@ -33,12 +33,12 @@ def generate_new_cluster(df):
             cluster_index = cluster_index + 1
             end = row.stop
             chrom = row.chrom
-            df.set_value(index,"cluster",cluster_index)
+            df.at[index,"cluster",cluster_index] = cluster_index
         else:
             if (row.stop > end):
                 end = row.stop
                 chrom = row.chrom
-        df.set_value(index, "cluster", cluster_index)
+        df.at[index, "cluster", cluster_index] = cluster_index
 
     return df # return the reclustered dataframe for further processing
 
@@ -48,7 +48,7 @@ def processGroup(df):
 
     #Case 1: If more than one cluster exists in this dataFrame, iterate through the clusters and process again
     if newDF['cluster'].nunique() > 1:
-        #iterate through each group's new DF seperately and reduce
+        #iterate through each group's new DF separately and reduce
         tempDF = newDF.groupby(['cluster'])
         for index, group in tempDF:
             processGroup(tempDF.get_group(index))
