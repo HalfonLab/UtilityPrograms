@@ -1,35 +1,26 @@
 #!/usr/bin/bash
 
+#version 4: Jan 30 2025, MSH
+#fix usage instructions
+
 #version 3: Nov 2022 , HA
 #remove scores directory content as well
-
-
 
 #version 2: Sept 2019 , Hasiba Asma
 #clean up after SCRMhshaw HD
 
-
 #script for cleaning up unneeded SCRMshaw files
 #specifically, what is in the /fasta subdirectory
 
-#Usage: ./cleanup_fastadirectory.sh SCRMshaw_output_directory_name
+#Usage: ./cleanup_fastadirectory.sh 
+#this script should be run from the SCRMshaw results directory
 
 #created May 11 2017, Marc S. Halfon
 
 #The /fasta directory contains FASTA genome sequence, k-mer frequency files, and FASTA window files.
 #Storage requirements for these quickly gets large. If you are only interested in the hits (predicted CRMs), you can use this script to delete the contents of the /fasta directory when finished
 
-#this script ideally should be run from the level above the SCRMshaw results directory
-#i.e., if directory structure is "output_files/SCRMshaw_output_A", to clean up "SCRMshaw_output_A", run from "output_files"
-
-#test that directory exists:
-#outputdir=$1
-
-# if [ ! -d "$outputdir" ]; then
-# 	echo "$0: valid directory not specified on command line"
-# 	exit 1
-# fi		
-		
+	
 #make sure that you want to clean this directory:
 echo -n "Are you sure you want to delete the contents of the fasta and score directories from all subfolders? [y/n] "
 
